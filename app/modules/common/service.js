@@ -130,6 +130,18 @@ class CommonService {
   aggregate() {
     return this.model.aggregate(...arguments)
   }
+
+  /**
+   * @method readAndUpdate
+   * Finds a document by ID and updates it.
+   * @param {String} id - Document ID
+   * @param {Object} update - Update data
+   * @param {Object} [options] - Mongoose update options
+   * @return {Promise<Object>} Updated document
+   */
+  readAndUpdate(id, update, options = {}) {
+    return this.model.findByIdAndUpdate(id, update, { ...options, new: true })
+  }
 }
 
 module.exports = CommonService
